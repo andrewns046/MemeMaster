@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+}
+
+#logoCenter {
+    display: block;
+    margin: 30px auto 50px;
+    font-size: 48px;
+}
+
+#information {
+    display: block;
+    margin: 30px auto;
+    width: 75%;
+}
+
+
+#createAcc {
+    text-align: center;
+    margin: 10px auto;
+}
+
+.customHeading {
+    font-weight: normal;
+    text-align: center;
+}
+
+.defaultButton {
+    background-color: rgb(35,31,32);
+    color: white;
+    border: solid rgb(35,31,32);
+    border-radius: 3px;
+    width: auto;
+    height: auto;
+    padding: 0 20px;
+    margin: auto;
+    font-size: 18px;
+}
