@@ -4,6 +4,12 @@
     width: 50%;
 }
 
+#crtActForm {
+    display: block;
+    margin: 30px auto;
+    width: 50%;
+}
+
 input {
     display: block;
     width: 100%;
