@@ -47,6 +47,11 @@ button {
     width: auto;
     height: auto;
     padding: 0 20px;
-    margin: auto;
+    /*margin: auto;*/
     font-size: 18px;
+}
+
+#submitBtn, #createBtn {
+    display: block;
+    margin: 10px auto;
 }

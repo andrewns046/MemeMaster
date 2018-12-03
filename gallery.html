@@ -22,7 +22,10 @@
     </head>
     <body id="rule2">
         <header id="actOptions">
-            <p id="actShit">Hello, User  |  <a href="./editaccount">Edit Account Info</a>  |  <a href="./signout.html">Sign Out</a></p>
+            <p><span id="howdy">Howdy, User</span>  |
+                <a href="./editaccount">Edit Account Info</a>  |
+                <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
+            </p>
         </header>
         <ul id="navbar">
             <li class="leftItems"><a>MemeMaster</a></li>
@@ -32,5 +35,25 @@
             <li class="views"><button><i class="fa fa-bars"></i></button></li>
             <li class="views"><button><i class="fa fa-th"></i></button></li>
         </ul>
+        <div id="gallery">
+            <p class="customHeading">Seems like you haven't added memes yet ... click create to get
+                started or click upload and add some memes from your computer</p>
+        </div>
+        <!--Firbase Inclusion-->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB1P34VPsNumr_vue-_YFRGH8dfBATnS7E",
+                authDomain: "mememaster-3b8a9.firebaseapp.com",
+                databaseURL: "https://mememaster-3b8a9.firebaseio.com",
+                projectId: "mememaster-3b8a9",
+                storageBucket: "mememaster-3b8a9.appspot.com",
+                messagingSenderId: "85250108431"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script src="./scripts/app.js"></script>
     </body>
 </html>

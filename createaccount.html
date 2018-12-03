@@ -20,23 +20,38 @@
             memes</h2>
         </header>
         <h1 class="customHeading">Create Account</h1>
-        <form id="crtActForm">
+        <div id="crtActForm">
             <p><label for="usrName">Username:</label>
             <input type="text" id="usrName" placeholder="SpicyMemes">
             </p>
             <strong>Email verification will be sent to the follwoing email
                 address</strong>
-            <p><label for="email">Email Address:</label>
-            <input type="text" id="email" placeholder="johndoe@gmail.com">
+            <p><label for="usrEmail">Email Address:</label>
+            <input type="text" id="usrEmail" placeholder="johndoe@gmail.com">
             </p>
-            <p><label for="psWord">Password:</label>
-            <input type="password" id="psWord">
+            <p><label for="usrPass">Password:</label>
+            <input type="password" id="usrPass">
             </p>
-            <p><label for="vrfypsWord">Verify Password:</label>
-            <input type="password" id="vrfypsWord">
+            <p><label for="vrfyPass">Verify Password:</label>
+            <input type="password" id="vrfyPass">
             </p>
-            <p><input type="submit" class="defaultButton" value="Create Account">
-            </p>
-        </form>
+        </div>
+        <button id="createBtn">Create Account</button>
+        <!--Firbase Inclusion-->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB1P34VPsNumr_vue-_YFRGH8dfBATnS7E",
+                authDomain: "mememaster-3b8a9.firebaseapp.com",
+                databaseURL: "https://mememaster-3b8a9.firebaseio.com",
+                projectId: "mememaster-3b8a9",
+                storageBucket: "mememaster-3b8a9.appspot.com",
+                messagingSenderId: "85250108431"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script src="/scripts/createaccount.js"></script>
     </body>
 </html>
