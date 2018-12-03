@@ -1,6 +1,13 @@
-body {
+#rule1 {
     font-family: sans-serif;
     max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+}
+
+#rule2 {
+    font-family: sans-serif;
+    max-width: 1000px;
     margin: auto;
     font-size: 18px;
 }
@@ -28,7 +35,11 @@ body {
     text-align: center;
 }
 
-.defaultButton {
+.customMessage {
+    font-weight: normal;
+}
+
+button {
     background-color: rgb(35,31,32);
     color: white;
     border: solid rgb(35,31,32);

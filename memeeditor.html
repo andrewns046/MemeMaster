@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" >
+        <link rel="stylesheet" href="./css/default.css" type="text/css">
+        <link rel="stylesheet" href="./css/nav.css" type="text/css">
+        <link rel="stylesheet" href="./css/editor.css" type="text/css">
+        <link rel="stylesheet" href="./css/slider.css" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>MemeMaster</title>
+        <style type="text/css">
+            li:nth-child(2) {
+                color: white;
+                font-size: 18px;
+                padding: 14px 16px;
+                width: 500px;
+                background-color: rgb(0,162,229);
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body id="rule2">
+        <header id="actOptions">
+            <p id="actShit">Hello, User  |  <a href="./editaccount">Edit Account Info</a>  |  <a href="./signout.html">Sign Out</a></p>
+        </header>
+        <ul id="navbar">
+            <li class="leftItems"><a href="./gallery.html">MemeMaster</a></li>
+            <li class="leftItems">Meme Editor</li>
+        </ul>
+    </body>
+    <div class="colL">
+        <section>
+            <h3>Step 1:</h3>
+            <p>Choose and Image:</p>
+            <button>Upload File</button>
+        </section>
+        <section>
+            <h3>Step 2:</h3>
+            <p>Add text:</p>
+            <button>New Text Object</button>
+            <div class="textTools">
+                <h4>Text Tools</h4>
+                <hr>
+                <!-- Style, Color, Font Size -->
+                <select id="memeStyle">
+                    <option value="none">meme style</option>
+                    <option value="classic">spicy classic</option>
+                    <option value="new">spicy new</option>
+                </select>
+                <select id="textColor">
+                    <option value="white">white</option>
+                    <option value="black">black</option>
+                </select>
+                <select id="fontSize">
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="18">18</option>
+                    <option value="24">24</option>
+                    <option value="30">30</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                    <option value="72">72</option>
+                    <option value="96">96</option>
+                </select>
+            </div>
+            <p>Use the text tools above to edit the text properties on screen.</p>
+        </section>
+        <section>
+            <h3>Step 3:</h3>
+            <p>Share:</p>
+            <p>Export Photo:</p>
+            <button id="dwnLoadBtn">Download</button>
+            <p>OR</p>
+            <p>Email or share on social media using the following link:</p>
+            <input type="text" id="shareLink" name="shareLink" value="null">
+        </section>
+    </div>
+    <div class="colR">
+        <section id="brdOptions">
+            <p>Border Top:
+                <label class="switch" for="borderTop">
+                    <input id="borderTop" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            Border Bottom:
+                <label class="switch" for="borderBottom">
+                    <input id="borderBottom" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </p>
+        </section>
+        <div id="imageHolder">
+            <i class="fa fa-image"></i>
+        </div>
+    </div>
+</html>

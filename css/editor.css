@@ -1,0 +1,29 @@
+.colL {
+    display: inline-block;
+    float:left;
+    width: 25%;
+}
+.colR {
+    display: inline-block;
+    float: right;
+    width: 75%;
+    overflow: hidden;
+}
+
+#brdOptions {
+    float: right;
+}
+
+#imageHolder {
+    float: right;
+    width: 600px;
+    height: 600px;
+    background-color: rgb(35,31,32);
+    text-align: center;
+}
+
+#imageHolder i {
+    margin-top: 120px;
+    color: white;
+    font-size: 300px;
+}
