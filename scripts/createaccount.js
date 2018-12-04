@@ -6,7 +6,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             usr.updateProfile({displayName: name}).then(function(){
                 //profile updated
             }).catch(function(error){});
-            window.location = 'gallery.html';
+            window.location = "gallery.html";
         }
     } else {
         // No user is signed in.

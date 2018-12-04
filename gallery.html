@@ -22,7 +22,7 @@
     </head>
     <body id="rule2">
         <header id="actOptions">
-            <p><span id="howdy">Howdy, User</span>  |
+            <p><span id="howdy">Howdy</span>  |
                 <a href="./editaccount">Edit Account Info</a>  |
                 <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
             </p>
@@ -30,7 +30,7 @@
         <ul id="navbar">
             <li class="leftItems"><a>MemeMaster</a></li>
             <li class="leftItems"><a href="./memeeditor.html">Create</a></li>
-            <li class="leftItems"><button id="upldBtn">Upload</button></li>
+            <li class="leftItems"><button id="uploadDiagBtn">Upload</button></li>
             <li class="leftItems"><a id="arcLink" href="./archivegallery.html"><i class="fa fa-archive"></i></a></li>
             <li class="views"><button><i class="fa fa-bars"></i></button></li>
             <li class="views"><button><i class="fa fa-th"></i></button></li>
@@ -39,9 +39,15 @@
             <p class="customHeading">Seems like you haven't added memes yet ... click create to get
                 started or click upload and add some memes from your computer</p>
         </div>
+        <dialog id="uploadDiag" open>
+            <input type="file" id="imageFile" accept="image/jpeg, image/gif, image/png">
+            <button id="uploadImgBtn">Upload To Firebase</button><br>
+            <progress id="uploadProg" value="0" max="100">Upload Progress</progress>
+        <dialog>
         <!--Firbase Inclusion-->
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-storage.js"></script>
         <script>
             // Initialize Firebase
             var config = {
