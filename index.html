@@ -57,6 +57,16 @@
             };
             firebase.initializeApp(config);
         </script>
-        <script src="./scripts/login.js"></script>
+        <script type="module">
+            import * as MemeMaster from './scripts/login.js';
+            firebase.auth().onAuthStateChanged(function(user) {
+                MemeMaster.handleSignIn(user);
+            });
+            window.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('submitBtn').addEventListener('click',()=>{
+                    MemeMaster.login();
+                });
+            });
+        </script>
     </body>
 </html>

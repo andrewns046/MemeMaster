@@ -1,6 +1,6 @@
 #navbar {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
     overflow: hidden;
     background-color: rgb(35,31,32);
@@ -28,12 +28,12 @@ li button {
     float:left;
 }
 
-.views {
+.rightItems {
     float: right;
 }
 
 #actOptions {
     display: block;
-    width: 45%;
-    margin: 0px 60%;
+    font-size: 14px;
+    float: right;
 }

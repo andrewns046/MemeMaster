@@ -1,13 +1,13 @@
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in. Redirect them to their Gallery
-    window.location = 'gallery.html';
-  } else {
-    // No user is signed in.
-  }
-});
+export function handleSignIn(user) {
+    if (user) {
+      // User is signed in. Redirect them to their Gallery
+      window.location = 'gallery.html';
+    } else {
+      // No user is signed in.
+    }
+}
 
-function login() {
+export function login() {
     var usrEmail = document.getElementById("usrEmail").value;
     var usrPass = document.getElementById("usrPass").value;
 
@@ -18,9 +18,3 @@ function login() {
         window.alert("Error: " + errorMessage + "\nError Code: " + errorCode);
     });
 }
-
-window.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('submitBtn').addEventListener('click',()=>{
-        login();
-    });
-});

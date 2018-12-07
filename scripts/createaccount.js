@@ -1,20 +1,25 @@
-firebase.auth().onAuthStateChanged(function(user) {
+export function signedInEventHandle(user) {
     if (user) {
-        usr = firebase.auth().currentUser;
+        var usr = firebase.auth().currentUser;
         if(usr != null) {
-            var name = document.getElementById('usrName').value;
-            usr.updateProfile({displayName: name}).then(function(){
-                //profile updated
-            }).catch(function(error){});
+            updateUserName(usr);
+            initData(usr);
             window.location = "gallery.html";
         }
     } else {
         // No user is signed in.
     }
-});
+}
 
-function createAct() {
+function updateUserName(user) {
+    var name = document.getElementById('usrName').value;
+    user.updateProfile({displayName: name}).then(function(){
+        //profile updated
+    }).catch(function(error){});
+}
 
+export function createAct() {
+    var name = document.getElementById('usrName').value;
     var email = document.getElementById('usrEmail').value;
     var password = document.getElementById('usrPass').value;
     var vPass = document.getElementById('vrfyPass').value;
@@ -25,17 +30,27 @@ function createAct() {
         return;
     }
 
+    // check that user did not leave any fields blank
+    if( email.length == 0 || password.length == 0 || name.length == 0 ||
+        vPass.length == 0) {
+            alert("Must enter info in all fields.");
+            return;
+        }
+
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         alert("Error: " + errorMessage + "\nError Code: " + errorCode);
-        // ...
+        return;
     });
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('createBtn').addEventListener('click',()=>{
-        createAct();
+function initData (user) {
+    firebase.database().ref(`${user.uid}/public`).set({
+        urls: ["empty"]
     });
-});
+    firebase.database().ref(`${user.uid}/archive`).set({
+        urls: ["empty"]
+    });
+}

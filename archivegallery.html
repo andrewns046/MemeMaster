@@ -4,6 +4,7 @@
         <meta charset="utf-8" >
         <link rel="stylesheet" href="./css/default.css" type="text/css">
         <link rel="stylesheet" href="./css/nav.css" type="text/css">
+        <link rel="stylesheet" href="/css/gallery.css" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>MemeMaster</title>
         <style type="text/css">
@@ -17,15 +18,67 @@
             }
         </style>
     </head>
-    <body id="rule2">
+    <body id="rule1">
         <header id="actOptions">
-            <p id="actShit">Hello, User  |  <a href="./editaccount">Edit Account Info</a>  |  <a href="./signout.html">Sign Out</a></p>
+            <p><span id="howdy">Howdy</span>  |
+                <a href="./editaccount">Edit Account Info</a>  |
+                <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
+            </p>
         </header>
+        <div class="clearfix"></div>
         <ul id="navbar">
             <li class="leftItems"><a href="./gallery.html">MemeMaster</a></li>
-            <li class="leftItems">Archived Memes</li>
-            <li class="views"><button><i class="fa fa-bars"></i></button></li>
-            <li class="views"><button><i class="fa fa-th"></i></button></li>
+            <li class="rightItems">Archived Memes</li>
         </ul>
+
+        <dialog id="imageView">
+            <div id="diagToolBar">
+                <button id="unarchBtn"><i class="fa fa-undo"></i></button>
+                <button id="deleteBtn"><i class="fa fa-trash"></i></button>
+                <form method="dialog">
+                    <button id="exitImgView"><i class="fa fa-times"></i></button>
+                </form>
+            </div>
+            <img id="diagImg" alt="no image available">
+        </dialog>
+
+        <div id="gallery">
+            <p class="greyHeading">No Archived Memes</p>
+        </div>
+        <!--Firbase Inclusion-->
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB1P34VPsNumr_vue-_YFRGH8dfBATnS7E",
+                authDomain: "mememaster-3b8a9.firebaseapp.com",
+                databaseURL: "https://mememaster-3b8a9.firebaseio.com",
+                projectId: "mememaster-3b8a9",
+                storageBucket: "mememaster-3b8a9.appspot.com",
+                messagingSenderId: "85250108431"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <script type="module">
+            import * as MemeMaster from './scripts/app.js';
+
+            // firebase authentification
+            firebase.auth().onAuthStateChanged(function(user) {
+                MemeMaster.signedInEventHandle(user, 'archive');
+            });
+
+            window.openImg = (index) => {
+                MemeMaster.handleSelectedImage("archive", index);
+            }
+
+            window.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('sgnOutLnk').addEventListener('click',()=>{
+                    MemeMaster.signOut();
+                });
+            });
+        </script>
     </body>
 </html>

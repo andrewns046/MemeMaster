@@ -19,13 +19,14 @@
             }
         </style>
     </head>
-    <body id="rule2">
+    <body id="rule1">
         <header id="actOptions">
             <p id="actShit">Hello, User  |  <a href="./editaccount">Edit Account Info</a>  |  <a href="./signout.html">Sign Out</a></p>
         </header>
+        <div class="clearfix"></div>
         <ul id="navbar">
             <li class="leftItems"><a href="./gallery.html">MemeMaster</a></li>
-            <li class="leftItems">Meme Editor</li>
+            <li class="rightItems">Meme Editor</li>
         </ul>
     </body>
     <div class="colL">
@@ -87,15 +88,21 @@
                     <input id="borderTop" type="checkbox">
                     <span class="slider round"></span>
                 </label>
-            Border Bottom:
+                Border Bottom:
                 <label class="switch" for="borderBottom">
                     <input id="borderBottom" type="checkbox">
                     <span class="slider round"></span>
                 </label>
             </p>
         </section>
-        <div id="imageHolder">
-            <i class="fa fa-image"></i>
+        <div class="clearfix"></div>
+        <div class="memePreview">
+            <canvas id="memeCanvas"></canvas>
+            <img id="memeMainImg" alt="upload an Image to get started">
         </div>
     </div>
+
+    <script type="module">
+
+    </script>
 </html>

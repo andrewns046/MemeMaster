@@ -4,10 +4,11 @@
         <meta charset="utf-8" >
         <link rel="stylesheet" href="./css/default.css" type="text/css">
         <link rel="stylesheet" href="./css/nav.css" type="text/css">
+        <link rel="stylesheet" href="/css/gallery.css" type="text/css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>MemeMaster</title>
         <style type="text/css">
-            li:nth-child(2) {
+            li:nth-child(4) {
                 background-color: rgb(0,162,229);
             }
 
@@ -15,39 +16,59 @@
                 background-color: rgb(230,22,16);
             }
 
-            li:nth-child(4){
+            li:nth-child(2){
                 background-color: gold;
+            }
+            li:hover {
+                background-color: magenta;
             }
         </style>
     </head>
-    <body id="rule2">
+    <body id="rule1">
         <header id="actOptions">
             <p><span id="howdy">Howdy</span>  |
                 <a href="./editaccount">Edit Account Info</a>  |
                 <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
             </p>
         </header>
+        <div class="clearfix"></div>
         <ul id="navbar">
             <li class="leftItems"><a>MemeMaster</a></li>
-            <li class="leftItems"><a href="./memeeditor.html">Create</a></li>
-            <li class="leftItems"><button id="uploadDiagBtn">Upload</button></li>
-            <li class="leftItems"><a id="arcLink" href="./archivegallery.html"><i class="fa fa-archive"></i></a></li>
-            <li class="views"><button><i class="fa fa-bars"></i></button></li>
-            <li class="views"><button><i class="fa fa-th"></i></button></li>
+            <li class="rightItems"><a id="arcLink" href="./archivegallery.html"><i class="fa fa-archive"></i></a></li>
+            <li class="rightItems"><button id="uploadDiagBtn">Upload</button></li>
+            <li class="rightItems"><a href="./memeeditor.html">Create</a></li>
         </ul>
-        <div id="gallery">
-            <p class="customHeading">Seems like you haven't added memes yet ... click create to get
-                started or click upload and add some memes from your computer</p>
-        </div>
-        <dialog id="uploadDiag" open>
+        <dialog id="uploadDiag">
             <input type="file" id="imageFile" accept="image/jpeg, image/gif, image/png">
-            <button id="uploadImgBtn">Upload To Firebase</button><br>
             <progress id="uploadProg" value="0" max="100">Upload Progress</progress>
-        <dialog>
+            <p>Copy and Paste the following url to share:</p>
+            <input id="shareLink" type="text">
+            <div class="clearfix"></div>
+            <button id="uploadImgBtn">Upload</button>
+            <form method="dialog">
+                <button id="closeDiagBtn">Close</button>
+            </form>
+        </dialog>
+        <dialog id="imageView">
+            <div id="diagToolBar">
+                <a id="download" href="#" download="mememasterimage"><button><i class="fa fa-download"></i></button></a>
+                <button id="archBtn"><i class="fa fa-archive"></i></button>
+                <a id="shareLink2" href="#"><button><i class="fa fa-link"></i></button></a>
+                <form method="dialog">
+                    <button id="exitImgView"><i class="fa fa-times"></i></button>
+                </form>
+            </div>
+            <img id="diagImg" alt="no image available">
+        </dialog>
+        <div id="gallery">
+            <p class="greyHeading">Seems like you haven't added memes yet ... click create to get
+                started or click upload and add some memes from your computer.</p>
+        </div>
         <!--Firbase Inclusion-->
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
         <script>
             // Initialize Firebase
             var config = {
@@ -60,6 +81,29 @@
             };
             firebase.initializeApp(config);
         </script>
-        <script src="./scripts/app.js"></script>
+        <script type="module">
+            import * as MemeMaster from './scripts/app.js';
+
+            // firebase authentification
+            firebase.auth().onAuthStateChanged(function(user) {
+                MemeMaster.signedInEventHandle(user,'public');
+            });
+
+            window.openImg = (index) => {
+                MemeMaster.handleSelectedImage("public", index);
+            }
+
+            window.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('sgnOutLnk').addEventListener('click',()=>{
+                    MemeMaster.signOut();
+                });
+                document.getElementById('uploadImgBtn').addEventListener('click',()=>{
+                    MemeMaster.uploadImage();
+                });
+                document.getElementById('uploadDiagBtn').addEventListener('click', ()=>{
+                    MemeMaster.showUploadModule();
+                });
+            });
+        </script>
     </body>
 </html>

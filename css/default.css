@@ -7,7 +7,7 @@
 
 #rule2 {
     font-family: sans-serif;
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
     font-size: 18px;
 }
@@ -39,16 +39,33 @@
     font-weight: normal;
 }
 
+.greyHeading {
+    text-align: center;
+    width: 75%;
+    margin: 50px auto;
+    color: grey;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 button {
     background-color: rgb(35,31,32);
     color: white;
-    border: solid rgb(35,31,32);
+    border: 2px solid rgb(35,31,32);
     border-radius: 3px;
     width: auto;
     height: auto;
-    padding: 0 20px;
+    padding: 5px 20px;
     /*margin: auto;*/
     font-size: 18px;
+}
+
+button:hover {
+    background-color: black;
 }
 
 #submitBtn, #createBtn {
