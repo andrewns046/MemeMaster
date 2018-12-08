@@ -4,7 +4,7 @@ export function signedInEventHandle(user) {
         if(usr != null) {
             updateUserName(usr);
             initData(usr);
-            window.location = "gallery.html";
+            setTimeout(function(){window.location = "gallery.html";},3000);
         }
     } else {
         // No user is signed in.

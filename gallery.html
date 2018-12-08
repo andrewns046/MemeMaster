@@ -27,7 +27,6 @@
     <body id="rule1">
         <header id="actOptions">
             <p><span id="howdy">Howdy</span>  |
-                <a href="./editaccount">Edit Account Info</a>  |
                 <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
             </p>
         </header>
@@ -64,6 +63,8 @@
             <p class="greyHeading">Seems like you haven't added memes yet ... click create to get
                 started or click upload and add some memes from your computer.</p>
         </div>
+        <div class="clearfix"></div>
+        <button id="loadMoreBtn">Load More</button>
         <!--Firbase Inclusion-->
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
@@ -103,7 +104,11 @@
                 document.getElementById('uploadDiagBtn').addEventListener('click', ()=>{
                     MemeMaster.showUploadModule();
                 });
+                document.getElementById('loadMoreBtn').addEventListener('click',()=>{
+                    MemeMaster.smartLoadImages('public');
+                })
             });
         </script>
+        <noscript>Your browser does not support JavaScript!</noscript>
     </body>
 </html>

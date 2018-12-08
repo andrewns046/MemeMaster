@@ -1,12 +1,10 @@
-var numImgs = 0;
-
 export function signedInEventHandle(user, location) {
     if (user) {
       // User is signed in.
       var usr = firebase.auth().currentUser;
       if(usr != null) {
           document.getElementById('howdy').innerHTML = `Howdy, ${usr.displayName}`;
-          downloadUsrImages(location);
+          smartLoadImages(location);
       }
     } else {
       // No user is signed in. Send them to login
@@ -134,12 +132,16 @@ export function showUploadModule() {
     document.getElementById('uploadDiag').showModal();
 }
 
-/*Location either "public or archive"*/
-function downloadUsrImages(location) {
+//num images loaded
+var numImgs = 0;
+var loadSize = 15;
+
+export function smartLoadImages(location) {
     if( location != "public" && location != "archive") {
         alert("Sorry the library you are trying to access does not exist.");
         return;
     }
+
     //get references
     var usr = firebase.auth().currentUser;
     var urlsRef = firebase.database().ref(`${usr.uid}/${location}/urls`);
@@ -153,16 +155,34 @@ function downloadUsrImages(location) {
         } else {
             var gallery = document.getElementById('gallery');
             var htmlText = "";
+            var startLoadFrom;
             var i;
-            for(i = (urlArr.length-1); i >= 0; --i) {
-                htmlText = htmlText + createImageItem(urlArr[i], i);
+            var count = 0;
+            if(numImgs == 0) {
+                gallery.innerHTML = '';
             }
-            gallery.innerHTML = htmlText;
+            startLoadFrom = (urlArr.length-1) - numImgs;
+            for(i = startLoadFrom; i >= 0; --i) {
+                htmlText = htmlText + createImageItem(urlArr[i], i);
+                ++count;
+                if( count == loadSize ) {
+                    break;
+                }
+            }
+            //done loading
+            var elem = document.getElementById('loadMoreBtn');
+            if(count < loadSize && elem != null) {
+                //remove load button from dom
+                elem.parentNode.removeChild(elem);
+            }
 
-            numImgs = urlArr.length;
+            gallery.innerHTML = gallery.innerHTML + htmlText;
+            //prev loaded plus new loaded
+            numImgs = numImgs + count;
         }
     });
 }
+
 
 //creates an image to be added to the gallery
 function createImageItem(url, index) {
@@ -221,14 +241,15 @@ export function handleSelectedImage(location, index) {
 
                     //update in gallery
                     var gallery = document.getElementById('gallery');
-
                     --numImgs;
-
                     if(numImgs == 0) {
                         gallery.innerHTML = "<p class='greyHeading'>No Archived Memes</p>";
                     } else {
                         //refresh page index and repaint
-                        setTimeout(function(){downloadUsrImages("archive");}, 2000);
+                        setTimeout(function(){
+                            numImgs = 0;
+                            smartLoadImages("archive");
+                        }, 2000);
                     }
                 }
             }
@@ -248,17 +269,17 @@ function deleteMeme(index, url) {
     fileRef.delete().then(function() {
         //file deleted
         removeFromUrlArr(`${usr.uid}/archive`, index);
-
         //update in gallery
         var gallery = document.getElementById('gallery');
-
         --numImgs;
-
         if(numImgs == 0) {
             gallery.innerHTML = "<p class='greyHeading'>No Archived Memes</p>";
         } else {
             //refresh page index and repaint
-            setTimeout(function(){downloadUsrImages("archive");}, 2000);
+            setTimeout(function(){
+                numImgs = 0;
+                smartLoadImages("archive");
+            }, 2000);
         }
     }).catch(function(error) {
         //error occurred
@@ -285,12 +306,14 @@ function archiveImg(index, url) {
     var gallery = document.getElementById('gallery');
 
     --numImgs;
-
     if(numImgs == 0) {
         gallery.innerHTML = "<p class='greyHeading'>Seems like you haven't added memes yet ... click create to get started or click upload and add some memes from your computer.</p>";
     } else {
         //refresh page index and repaint
-        setTimeout(function(){downloadUsrImages("public");}, 2000);
+        setTimeout(function(){
+            numImgs = 0;
+            smartLoadImages("public");
+        }, 2000);
     }
 }
 
@@ -309,7 +332,10 @@ function unarchiveImg(index, url) {
         gallery.innerHTML = "<p class='greyHeading'>No Archived Memes</p>";
     } else {
         //refresh page index and repaint
-        setTimeout(function(){downloadUsrImages("archive");}, 2000);
+        setTimeout(function(){
+            numImgs = 0;
+            smartLoadImages("archive");
+        }, 2000);
     }
 }
 

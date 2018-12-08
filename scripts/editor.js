@@ -8,7 +8,7 @@ var curShadowXOffset = 2;
 var curShadowYOffset = 2;
 var curShadowBlur = 6;
 var curShadowColor ="#000000";
-var imgSrc = "https://firebasestorage.googleapis.com/v0/b/mememaster-3b8a9.appspot.com/o/oLqDyioQOaOsKJsVFMh5lIUT3gw1%2Fpublic%2Fmm-no-image.gif?alt=media&token=e864fcd4-843e-47df-b032-6f9803ec3972";
+var imgSrc = "https://firebasestorage.googleapis.com/v0/b/mememaster-3b8a9.appspot.com/o/3kxl6sSMv5OUN4xE4zt1gCGrpat1%2Fpublic%2Fmm-no-image.gif?alt=media&token=b689c4c3-3e26-4fcb-967b-c46be8043b47";
 var addImage = false;
 
 export function clearCanvas() {
@@ -292,7 +292,7 @@ export function drawTextOnCanvas() {
             if(curFontColorTop == "white") {ctx.strokeText(chars[j], x, y);}
             ctx.fillText(chars[j], x, y);
             //spaceWidth = ctx.measureText(chars[j]).width;
-            spaceWidth = ctx.measureText(chars[j]).width + ctx.measureText("a").width/2;
+            spaceWidth = ctx.measureText(chars[j]).width + (ctx.measureText("a").width*.38);
             x = x + spaceWidth;
         }
         x = 10;

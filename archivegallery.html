@@ -21,7 +21,6 @@
     <body id="rule1">
         <header id="actOptions">
             <p><span id="howdy">Howdy</span>  |
-                <a href="./editaccount">Edit Account Info</a>  |
                 <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
             </p>
         </header>
@@ -45,6 +44,8 @@
         <div id="gallery">
             <p class="greyHeading">No Archived Memes</p>
         </div>
+        <div class="clearfix"></div>
+        <button id="loadMoreBtn">Load More</button>
         <!--Firbase Inclusion-->
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
@@ -78,7 +79,11 @@
                 document.getElementById('sgnOutLnk').addEventListener('click',()=>{
                     MemeMaster.signOut();
                 });
+                document.getElementById('loadMoreBtn').addEventListener('click',()=>{
+                    MemeMaster.smartLoadImages('archive');
+                })
             });
         </script>
+        <noscript>Your browser does not support JavaScript!</noscript>
     </body>
 </html>

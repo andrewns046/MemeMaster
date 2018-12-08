@@ -53,6 +53,12 @@
     float: right;
 }
 
+#loadMoreBtn {
+    display: block;
+    width: 75%;
+    margin:20px auto;
+}
+
 #diagToolBar {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.6);
