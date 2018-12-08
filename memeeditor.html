@@ -19,90 +19,181 @@
             }
         </style>
     </head>
-    <body id="rule1">
+    <body id="rule2">
         <header id="actOptions">
-            <p id="actShit">Hello, User  |  <a href="./editaccount">Edit Account Info</a>  |  <a href="./signout.html">Sign Out</a></p>
+            <p><span id="howdy">Howdy</span>  |
+                <a href="./editaccount">Edit Account Info</a>  |
+                <a id="sgnOutLnk" href="./signout.html">Sign Out</a>
+            </p>
         </header>
         <div class="clearfix"></div>
         <ul id="navbar">
             <li class="leftItems"><a href="./gallery.html">MemeMaster</a></li>
             <li class="rightItems">Meme Editor</li>
         </ul>
-    </body>
-    <div class="colL">
-        <section>
-            <h3>Step 1:</h3>
-            <p>Choose and Image:</p>
-            <button>Upload File</button>
-        </section>
-        <section>
+        <div class="colL">
+            <section>
+                <h3>Step 1:</h3>
+                <input type="file" id="imageFile" accept="image/jpeg, image/gif, image/png">
+            </section>
+            <hr>
             <h3>Step 2:</h3>
-            <p>Add text:</p>
-            <button>New Text Object</button>
-            <div class="textTools">
-                <h4>Text Tools</h4>
-                <hr>
-                <!-- Style, Color, Font Size -->
-                <select id="memeStyle">
-                    <option value="none">meme style</option>
-                    <option value="classic">spicy classic</option>
-                    <option value="new">spicy new</option>
-                </select>
-                <select id="textColor">
-                    <option value="white">white</option>
-                    <option value="black">black</option>
-                </select>
-                <select id="fontSize">
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="14">14</option>
-                    <option value="18">18</option>
-                    <option value="24">24</option>
-                    <option value="30">30</option>
-                    <option value="36">36</option>
-                    <option value="48">48</option>
-                    <option value="60">60</option>
-                    <option value="72">72</option>
-                    <option value="96">96</option>
-                </select>
+            <div class="text">
+                <div class="textTool">
+                    <!-- Style, Color, Font Size -->
+                    <p>Text on image will be formated freely and is determined
+                        by the spaces and newlines in this textbox</p>
+                    <textarea id="textTop"rows="6" cols="28" placeholder="Drop Spice Here"></textarea>
+                    <div class="textOpts">
+                        <select id="textFontTop">
+                            <option value="Impact" style="font: 12px impact,impac;">Impact</option>
+                            <option value="Arial" style="font: 12px Arial;">Arial</option>
+                            <option value="Arial Black" style="font:12px Arial Black">Arial Black</option>
+                            <option value="Comic Sans MS" style="font: 12px Comic Sans MS;">Comic Sans MS</option>
+                            <option value="Helvetica" style="font: 12px Helvetica;">Helvetica</option>
+                            <option value="Times New Roman" style="font: 12px Times New Roman;">Times New Roman</option>
+                            <option value="Times" style="font: 12px Times">Times</option>
+                            <option value="Courier New" style="font: 12px Courier New">Courier New</option>
+                            <option value="Courier" style="font: 12px Courier">Courier</option>
+                            <option value="Verdana" style="font: 12px Verdana">Verdana</option>
+                            <option value="Georgia" style="font: 12px Georgia">Georgia</option>
+                            <option value="Palatino" style="font: 12px Palatino">Palatino</option>
+                            <option value="Garamond" style="font: 12px Garamond">Garamond</option>
+                            <option value="Bookman" style="font: 12px Bookman">Bookman</option>
+                            <option value="Trebuchet MS" style="font: 12px Trebuchet MS">Trebuchet MS</option>
+                        </select>
+                        <input id="textSizeTop" type="number" value="48">
+                        <select id="textColorTop">
+                            <option value="white">white</option>
+                            <option value="black">black</option>
+                        </select>
+                    </div>
+                    <span class="iconTextOpts">
+                        <button id="boldFont"><i class="fa fa-bold"></i></button>
+                        <button id="italicFont"><i class="fa fa-italic"></i></button>
+                    </span>
+                </div>
             </div>
-            <p>Use the text tools above to edit the text properties on screen.</p>
-        </section>
-        <section>
-            <h3>Step 3:</h3>
-            <p>Share:</p>
-            <p>Export Photo:</p>
-            <button id="dwnLoadBtn">Download</button>
-            <p>OR</p>
-            <p>Email or share on social media using the following link:</p>
-            <input type="text" id="shareLink" name="shareLink" value="null">
-        </section>
-    </div>
-    <div class="colR">
-        <section id="brdOptions">
-            <p>Border Top:
+            <section id="brdOptions">
+                <p>Border Top:</p>
                 <label class="switch" for="borderTop">
                     <input id="borderTop" type="checkbox">
                     <span class="slider round"></span>
                 </label>
-                Border Bottom:
+                <input id="borderTopHeight" type="range" min="0" max="300" value="50">
+                <p>Border Bottom</p>
                 <label class="switch" for="borderBottom">
                     <input id="borderBottom" type="checkbox">
                     <span class="slider round"></span>
                 </label>
-            </p>
-        </section>
-        <div class="clearfix"></div>
-        <div class="memePreview">
-            <canvas id="memeCanvas"></canvas>
-            <img id="memeMainImg" alt="upload an Image to get started">
+                <input id="borderBottomHeight" type="range" min="0" max="300" value="50">
+            </section>
+            <div class="clearfix"></div>
+            <hr>
+            <section id="shareOpts">
+                <h3>Step 3:</h3>
+                <a id="downloadLink" href="#" download><button id="downloadBtn">Download Now</button></a>
+                <p>or</p>
+                <span>
+                    <i class="fa fa-link"></i>
+                    <input readonly type="text" id="shareLink" name="shareLink" placeholder="link">
+                </span>
+            </section>
         </div>
-    </div>
-
+        <div class="colR">
+            <div id="canvasContainer">
+                <canvas id="memeCanvas" width="500" height="500"></canvas>
+                <pre id="textPreviewTop"></pre>
+            </div>
+            <div class="clearfix"></div>
+            <br>
+            <br>
+            <div class="actionBtns">
+                <button id="createMemeBtn">Upload Meme</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </div>
+    </body>
+    <!--Firbase Inclusion-->
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB1P34VPsNumr_vue-_YFRGH8dfBATnS7E",
+            authDomain: "mememaster-3b8a9.firebaseapp.com",
+            databaseURL: "https://mememaster-3b8a9.firebaseio.com",
+            projectId: "mememaster-3b8a9",
+            storageBucket: "mememaster-3b8a9.appspot.com",
+            messagingSenderId: "85250108431"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script type="module">
+        import * as MemeEditor from './scripts/editor.js';
 
+        // firebase authentification
+        firebase.auth().onAuthStateChanged(function(user) {
+            MemeEditor.signedInEventHandle(user);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            MemeEditor.imageOnCanvasFill();
+
+            document.getElementById('textTop').addEventListener('input', function(){
+                MemeEditor.updatePreviewTextTop();
+            });
+
+            document.getElementById('createMemeBtn').addEventListener('click',function(){
+                MemeEditor.drawTextOnCanvas();
+            });
+
+            document.getElementById('resetBtn').addEventListener('click', function(){
+                MemeEditor.clearCanvas();
+            });
+
+            document.getElementById('textSizeTop').addEventListener('input', function() {
+                MemeEditor.updateFontSize();
+            });
+
+            document.getElementById('imageFile').addEventListener('input', function(){
+                MemeEditor.loadImage();
+            });
+
+            document.getElementById('textFontTop').addEventListener('change', function() {
+                MemeEditor.updateFont();
+            });
+
+            document.getElementById('textColorTop').addEventListener('change', function() {
+                MemeEditor.invertColor();
+            });
+
+            document.getElementById('boldFont').addEventListener('click', function(){
+                MemeEditor.turnBoldOn();
+            });
+
+            document.getElementById('italicFont').addEventListener('click', function(){
+                MemeEditor.turnItalicOn();
+            });
+
+            document.getElementById('borderTop').addEventListener('input', function(){
+                MemeEditor.imageOnCanvasFill();
+            });
+            document.getElementById('borderBottom').addEventListener('input', function(){
+                MemeEditor.imageOnCanvasFill();
+            });
+            document.getElementById('borderTopHeight').addEventListener('input', function(){
+                MemeEditor.imageOnCanvasFill();
+            });
+            document.getElementById('borderBottomHeight').addEventListener('input', function(){
+                MemeEditor.imageOnCanvasFill();
+            });
+            document.getElementById('sgnOutLnk').addEventListener('click',()=>{
+                MemeEditor.signOut();
+            });
+
+        });
     </script>
 </html>
