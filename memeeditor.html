@@ -103,9 +103,6 @@
             <div id="canvasContainer">
                 <canvas id="memeCanvas" width="500" height="500">
                 Your Browser cannot use canvas</canvas>
-                <pre id="textPreviewTop">
-
-                </pre>
             </div>
             <div class="clearfix"></div>
             <br>
@@ -145,7 +142,7 @@
             MemeEditor.imageOnCanvasFill();
 
             document.getElementById('textTop').addEventListener('input', function(){
-                MemeEditor.updatePreviewTextTop();
+                MemeEditor.updateCanvas();
             });
 
             document.getElementById('createMemeBtn').addEventListener('click',function(){

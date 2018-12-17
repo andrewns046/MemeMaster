@@ -70,23 +70,6 @@
     height: auto;
 }
 
-#textPreviewTop {
-    position: absolute;
-    color: white;
-    top: 0px;
-    left: 0px;
-    font: 48px Impact;
-    text-shadow: 2px 2px 6px #000000;
-    text-align: left;
-    padding: 10px;
-    margin: 0;
-    border: 0;
-     -moz-text-stroke-color: #000000;
-  -webkit-text-stroke-color: #000000;
-     -moz-text-stroke-width: 2px;
-  -webkit-text-stroke-width: 2px;
-    line-height: 110%;
-}
 
 #shareOpts {
     display: none;
