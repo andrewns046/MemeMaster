@@ -147,13 +147,11 @@ export function turnBoldOn() {
     if(curBoldTop == true) {
         //turn off
         curBoldTop = false
-        prevTextRef.style.fontWeight = "normal";
         //unhighlight button
         btn.style.backgroundColor = "rgb(35,31,32)";
     } else {
         //turn on
         curBoldTop = true;
-        prevTextRef.style.fontWeight = "bold";
         //highlight button
         btn.style.backgroundColor = "dodgerblue";
         //turn off italic
@@ -170,13 +168,11 @@ export function turnItalicOn() {
     if(curItalicTop == true) {
         //turn off
         curItalicTop = false
-        prevTextRef.style.fontStyle = "normal";
         //unhighlight button
         italicBtn.style.backgroundColor = "rgb(35,31,32)";
     } else {
         //turn on
         curItalicTop = true;
-        prevTextRef.style.fontStyle = "italic";
         //highlight button
         italicBtn.style.backgroundColor = "dodgerblue";
         //turn off bold
@@ -228,42 +224,46 @@ export function updateFontSize() {
     curFontSizeTop = fontSizeRef.value;
 }
 
-export function updateCanvas() {
+function updateTextOnCanvas() {
     var canvas = document.getElementById('memeCanvas');
     var ctx = canvas.getContext('2d');
     var text = document.getElementById('textTop').value;
 
-    //erase canvas
-    imageOnCanvasFill();
-    setTimeout(function(){
-        var fontStyle = (curBoldTop)? "bold":(curItalicTop)?"italic":"";
-        //font styles
-        ctx.font = `${fontStyle} ${curFontSizeTop}px ${curFontTop}`;
-        if( curFontColorTop == "white") {
-            ctx.lineWidth = 4;
-            ctx.lineJoin = "miter";
-            ctx.shadowOffsetX = curShadowXOffset;
-            ctx.shadowOffsetY = curShadowYOffset;
-            ctx.shadowBlur = curShadowBlur;
-            ctx.shadowColor = curShadowColor;
-            ctx.font = `${fontStyle} ${parseInt(curFontSizeTop, 10)-2}px ${curFontTop}`;
-        }
+    //calculate how many lines of text there can be
+    var lines = text.split("\n");
+    var fontStyle = (curBoldTop)? "bold":(curItalicTop)?"italic":"";
+    //font styles
+    ctx.font = `${fontStyle} ${curFontSizeTop}px ${curFontTop}`;
+    if( curFontColorTop == "white") {
+        ctx.lineWidth = 4;
+        ctx.lineJoin = "miter";
+        ctx.shadowOffsetX = curShadowXOffset;
+        ctx.shadowOffsetY = curShadowYOffset;
+        ctx.shadowBlur = curShadowBlur;
+        ctx.shadowColor = curShadowColor;
+        ctx.font = `${fontStyle} ${parseInt(curFontSizeTop, 10)-2}px ${curFontTop}`;
+    }
 
-        ctx.textBaseline = "top";
-        ctx.textAlign = curTextAlignTop;
-        ctx.fillStyle = curFontColorTop;
+    ctx.textBaseline = "top";
+    ctx.textAlign = curTextAlignTop;
+    ctx.fillStyle = curFontColorTop;
 
-        //padded start position
-        var x = 10;
-        var y = 10;
+    //padded start position
+    var x = 10;
+    var y = 10;
+    var lineHeight = parseInt(curFontSizeTop,10) * 1.1;
+    var i;
 
-        if(curFontColorTop == "white") {ctx.strokeText(text, x, y);}
-        ctx.fillText(text, x, y);
-    },10);
+    for(i = 0; i < lines.length; ++i) {
+        if(curFontColorTop == "white") {ctx.strokeText(lines[i], x, y);}
+        ctx.fillText(lines[i], x, y);
+        y = y + lineHeight;
+    }
 }
 
 export function save() {
     //if empty
+    var text = document.getElementById('textTop').value;
     if( text.length == 0 ) {
         alert("Oops ... Memes kinda need text.");
         return;
@@ -314,6 +314,7 @@ export function imageOnCanvasFill() {
         ctx.fillStyle="#FFFFFF";
         ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.drawImage(img, x, y, img.width, img.height);
+        updateTextOnCanvas();
     };
 
     img.src = imgSrc;

@@ -142,19 +142,20 @@
             MemeEditor.imageOnCanvasFill();
 
             document.getElementById('textTop').addEventListener('input', function(){
-                MemeEditor.updateCanvas();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('createMemeBtn').addEventListener('click',function(){
-                MemeEditor.drawTextOnCanvas();
+                MemeEditor.save();
             });
 
             document.getElementById('resetBtn').addEventListener('click', function(){
-                MemeEditor.clearCanvas();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('textSizeTop').addEventListener('input', function() {
                 MemeEditor.updateFontSize();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('imageFile').addEventListener('input', function(){
@@ -163,18 +164,22 @@
 
             document.getElementById('textFontTop').addEventListener('change', function() {
                 MemeEditor.updateFont();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('textColorTop').addEventListener('change', function() {
                 MemeEditor.invertColor();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('boldFont').addEventListener('click', function(){
                 MemeEditor.turnBoldOn();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('italicFont').addEventListener('click', function(){
                 MemeEditor.turnItalicOn();
+                MemeEditor.imageOnCanvasFill();
             });
 
             document.getElementById('borderTop').addEventListener('input', function(){
